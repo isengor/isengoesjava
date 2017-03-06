@@ -16,6 +16,8 @@ public class MyObservable extends Observable {
 
     private static List<Observer> observers;
 
+    public MyObservable(){}
+
     public MyObservable(Observer observer){
         addObserver(observer);
     }
@@ -42,6 +44,5 @@ public class MyObservable extends Observable {
         }
 
     }
-
 
 }

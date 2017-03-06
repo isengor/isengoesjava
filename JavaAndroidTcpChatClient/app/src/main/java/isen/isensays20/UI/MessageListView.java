@@ -16,10 +16,10 @@ import isen.isensays20.MyObservable;
  * Created by Ilya on 16.02.2017.
  */
 
-public class MessageListView extends ListView implements Observer {
+public class MessageListView extends ListView {
 
-    ArrayAdapter<String> msgListAdapter;
-    MyObservable observable;
+   private ArrayAdapter<String> msgListAdapter;
+   private MyObservable observable;
 
     public MessageListView(Context context) {
         super(context);
@@ -40,22 +40,18 @@ public class MessageListView extends ListView implements Observer {
     public void init(Context context){
         msgListAdapter = new ArrayAdapter<>(context,android.R.layout.simple_list_item_1);
         setAdapter(msgListAdapter);
-        observable = new MyObservable(this);
+        observable = new MyObservable();
     }
 
     public void setArrayList(ArrayList<String> msgList){
+        msgListAdapter.clear();
         msgListAdapter.addAll(msgList);
         smoothScrollToPositionFromTop(getCount() - 1, 0);
     }
 
-
-
-    @Override
-    public void update(Observable observable, Object o) {
-        //checking obs hashcode to exclude msg double posting
-        if(observable.hashCode()!= MainActivity.obsHashCode) {
-            msgListAdapter.add(o.toString());
-            smoothScrollToPositionFromTop(getCount() - 1, 0);
-        }
+    public void addMsg(String msg){
+        msgListAdapter.add(msg);
+        smoothScrollToPositionFromTop(getCount() - 1, 0);
     }
+
 }

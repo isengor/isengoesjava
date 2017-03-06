@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 public class MainReceiver extends BroadcastReceiver {
+
     public MainReceiver() {
     }
 

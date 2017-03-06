@@ -9,22 +9,26 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import isen.isensays20.MainActivity;
 import isen.isensays20.MyDB;
+import isen.isensays20.MyObservable;
 import isen.isensays20.R;
 
 /**
  * Created by Ilya on 18.02.2017.
  */
 
-public class NotifiPack {
+public class NotifyPack {
 
     private Context context;
     private ArrayList<String> msgList;
     private MyDB myDB;
 
-    public NotifiPack(Context context){
+
+    public NotifyPack(Context context){
 
         this.context=context;
 
