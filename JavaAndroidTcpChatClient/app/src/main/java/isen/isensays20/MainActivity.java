@@ -19,6 +19,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import isen.isensays20.Autobootpack.MyService;
+import isen.isensays20.DataBasePack.MyDbWrapper;
 import isen.isensays20.SettingsDialog.MyDialog;
 import isen.isensays20.UI.MessageListView;
 import isen.isensays20.UI.SendButton;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements Observer,View.OnC
     public static final int ACTIVITY_RESUMED = 1;
     public static final int ACTIVITY_PAUSED = 2;
 
-    private MyDB db;
+    private MyDbWrapper db;
     private MyDialog myDialog;
     private MyObservable observable;
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements Observer,View.OnC
 
     public void init(){
         messageListView =(MessageListView) findViewById(R.id.msgList);
-        db = new MyDB(this);
+        db = new MyDbWrapper(this);
 
         sendButton =(SendButton) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(this);

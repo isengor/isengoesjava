@@ -1,13 +1,12 @@
 package isen.isensays20.UI;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
-import isen.isensays20.MyDB;
+import isen.isensays20.DataBasePack.MyDbWrapper;
 
 
 /**
@@ -16,7 +15,7 @@ import isen.isensays20.MyDB;
 
 public class SearchTextView extends android.support.v7.widget.AppCompatEditText {
 
-    private MyDB db;
+    private MyDbWrapper db;
     private ArrayAdapter arrayAdapter;
 
     public SearchTextView(Context context) {
@@ -34,7 +33,7 @@ public class SearchTextView extends android.support.v7.widget.AppCompatEditText 
 
     }
 
-    public void initialize(MyDB db, ArrayAdapter arrayAdapter){
+    public void initialize(MyDbWrapper db, ArrayAdapter arrayAdapter){
         this.db = db;
         this.arrayAdapter = arrayAdapter;
 

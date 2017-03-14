@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 
-import isen.isensays20.MyDB;
+import isen.isensays20.DataBasePack.MyDbWrapper;
 import isen.isensays20.R;
 import isen.isensays20.UI.SearchTextView;
 
@@ -27,14 +27,14 @@ public class MyDialog extends AlertDialog.Builder implements View.OnClickListene
     private View dialogView;
     private Context context;
 
-    private MyDB myDB;
+    private MyDbWrapper myDbWrapper;
     private Dialog dialog;
 
-    public MyDialog(@NonNull Context context, LayoutInflater layoutInflater, int dialogId, MyDB db){
+    public MyDialog(@NonNull Context context, LayoutInflater layoutInflater, int dialogId, MyDbWrapper db){
         super(context);
 
         this.context = context;
-        this.myDB = db;
+        this.myDbWrapper = db;
 
         switch (dialogId) {
             case(USER_NAME_DIALOG): {
@@ -72,10 +72,10 @@ public class MyDialog extends AlertDialog.Builder implements View.OnClickListene
 
                 ArrayAdapter<String> msgListAdapter = new ArrayAdapter<>(context,
                         android.R.layout.simple_list_item_1,
-                        myDB.getMsgHistory());
+                        myDbWrapper.getMsgHistory());
 
                 listView.setAdapter(msgListAdapter);
-                searchTextView.initialize(myDB,msgListAdapter);
+                searchTextView.initialize(myDbWrapper,msgListAdapter);
 
                 dialog.getWindow().findViewById(R.id.cleanBtn).setOnClickListener(this);
                 break;
@@ -101,7 +101,7 @@ public class MyDialog extends AlertDialog.Builder implements View.OnClickListene
             }
             case(R.id.cleanBtn):{
                 ListView listView =(ListView) dialog.getWindow().findViewById(R.id.historyList);
-                myDB.clearDb();
+                myDbWrapper.clearDb();
                 listView.setAdapter(null);
 
                 break;

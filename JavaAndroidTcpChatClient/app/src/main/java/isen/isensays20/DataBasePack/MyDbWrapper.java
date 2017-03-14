@@ -12,12 +12,13 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Ilya on 01.03.2017.
  */
 
-public class MyDB {
+public class MyDbWrapper {
 
    private MyDbHelper dbHelper;
    private SQLiteDatabase db;
@@ -27,7 +28,7 @@ public class MyDB {
     private int dateColIndex;
     private Cursor cursor;
 
-    public MyDB(Context context){
+    public MyDbWrapper(Context context){
 
          dbHelper = new MyDbHelper(context);
          db = dbHelper.getWritableDatabase();
@@ -109,24 +110,27 @@ public class MyDB {
         return msgList;
     }
 
-    // And the last one returns messages which contains sequence from string parameter
+    /*
+    And the last one returns messages which contains sequence from string parameter,
+    this method strongly depends on UI thread, because has to immediately show results
+    in real time, this is why AsyncTask created
+    */
 
     public ArrayList<String> getMsgHistory(CharSequence containWord){
 
-        ArrayList<String> msgList = new ArrayList<>();
-        cursor = db.query("msghistory",null,null,null,null,null,null);
+        MyAsyncTask myAsyncTask = new MyAsyncTask(db);
+        myAsyncTask.execute(containWord);
 
-        if(cursor.moveToFirst()){
-
-            do{
-                String msg = cursor.getString(msgColIndex);
-                if (msg.contains(containWord)){
-                    msgList.add(rowToString(cursor));
-                }
-            } while(cursor.moveToNext());
+        try{
+            return myAsyncTask.get();
         }
-        cursor.close();
-        return msgList;
+        catch (ExecutionException ee){
+            return null;
+        }
+        catch (InterruptedException ie){
+            return null;
+        }
+
     }
 
     public String rowToString(Cursor cursor){
@@ -135,8 +139,5 @@ public class MyDB {
                 + ": "
                 + cursor.getString(msgColIndex);
     }
-
-
-
 
 }

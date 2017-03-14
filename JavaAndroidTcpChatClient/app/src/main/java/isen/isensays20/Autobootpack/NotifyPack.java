@@ -9,12 +9,9 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import isen.isensays20.MainActivity;
-import isen.isensays20.MyDB;
-import isen.isensays20.MyObservable;
+import isen.isensays20.DataBasePack.MyDbWrapper;
 import isen.isensays20.R;
 
 /**
@@ -25,7 +22,7 @@ public class NotifyPack {
 
     private Context context;
     private ArrayList<String> msgList;
-    private MyDB myDB;
+    private MyDbWrapper myDbWrapper;
 
 
     public NotifyPack(Context context){
@@ -33,12 +30,12 @@ public class NotifyPack {
         this.context=context;
 
         msgList = new ArrayList<>(1);
-        myDB = new MyDB(context);
+        myDbWrapper = new MyDbWrapper(context);
     }
 
     public void sendNotification(String msg){
 
-        myDB.addMessageToDb(getSenderName(msg),msg);
+        myDbWrapper.addMessageToDb(getSenderName(msg),msg);
 
         if (MainActivity.activityStatus!= MainActivity.ACTIVITY_RESUMED)
         {
