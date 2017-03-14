@@ -1,4 +1,4 @@
-package isen.isensays20;
+package isen.isensays20.DataBasePack;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -70,10 +71,7 @@ public class MyDB {
         if(cursor.moveToFirst()) {
 
             do {
-                msgList.add(cursor.getString(dateColIndex) + "\n" + " "
-                        + cursor.getString(nameColIndex)
-                        + ": "
-                        + cursor.getString(msgColIndex));
+                msgList.add(rowToString(cursor));
             } while (cursor.moveToNext());
         }
 
@@ -103,10 +101,7 @@ public class MyDB {
             }
 
             do {
-                msgList.add(cursor.getString(dateColIndex) + "\n" + " "
-                        + cursor.getString(nameColIndex)
-                        + ": "
-                        + cursor.getString(msgColIndex));
+                msgList.add(rowToString(cursor));
             } while (cursor.moveToNext());
         }
 
@@ -126,10 +121,7 @@ public class MyDB {
             do{
                 String msg = cursor.getString(msgColIndex);
                 if (msg.contains(containWord)){
-                    msgList.add(cursor.getString(dateColIndex) + "\n" + " "
-                            + cursor.getString(nameColIndex)
-                            + ": "
-                            + cursor.getString(msgColIndex));
+                    msgList.add(rowToString(cursor));
                 }
             } while(cursor.moveToNext());
         }
@@ -137,27 +129,14 @@ public class MyDB {
         return msgList;
     }
 
-
-    private class MyDbHelper extends SQLiteOpenHelper {
-
-        public MyDbHelper(Context context) {
-            super(context, "myDB3", null, 1);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-
-            Log.d("MyLog","DATABASE CREATED");
-            db.execSQL("create table msghistory ("
-                    + "id integer primary key autoincrement,"
-                    + "name text,"
-                    + "msg text,"
-                    + "date text" + ");");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        }
+    public String rowToString(Cursor cursor){
+        return  cursor.getString(dateColIndex) + "\n" + " "
+                + cursor.getString(nameColIndex)
+                + ": "
+                + cursor.getString(msgColIndex);
     }
+
+
+
+
 }
