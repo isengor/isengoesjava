@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -26,7 +27,8 @@ import isen.isensays20.UI.SendButton;
 import isen.isensays20.UI.SendTextView;
 
 
-public class MainActivity extends AppCompatActivity implements Observer,View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements
+        Observer,View.OnClickListener,MessageListView.OnFirstItemScrollUpListener {
 
     public static int activityStatus = 0;
     public static final int ACTIVITY_RESUMED = 1;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements Observer,View.OnC
 
     public void init(){
         messageListView =(MessageListView) findViewById(R.id.msgList);
+        messageListView.setOnFirstItemScrollUpListener(this);
         db = new MyDbWrapper(this);
 
         sendButton =(SendButton) findViewById(R.id.sendButton);
@@ -138,4 +141,16 @@ public class MainActivity extends AppCompatActivity implements Observer,View.OnC
         sendTextView.setText("");
 
     }
+
+
+    /*
+       If messagelist scrolled up being on top
+       we'r getting more messages from database
+    */
+    @Override
+    public void onFirstItemScrollUp() {
+        messageListView.setArrayList(db.getMsgHistory(messageListView.getCount()+5));
+        messageListView.smoothScrollToPosition(messageListView.getCount()-5,0);
+    }
+
 }
