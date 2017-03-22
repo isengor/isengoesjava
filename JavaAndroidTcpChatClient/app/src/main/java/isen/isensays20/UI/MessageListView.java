@@ -69,7 +69,7 @@ public class MessageListView extends ListView implements AbsListView.OnScrollLis
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if(scrollState==1 && listIsAtTop(view)){
+        if(scrollState==0 && listIsAtTop(view)){
             Log.d("MyLog","ListIsOnTop");
             onFirstItemScrollUpListener.onFirstItemScrollUp();
         }
