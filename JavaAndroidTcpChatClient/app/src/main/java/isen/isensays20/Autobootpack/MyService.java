@@ -107,6 +107,7 @@ public class MyService extends Service implements Observer,Handler.Callback {
 
             try {
                 serverSocket = new Socket("192.168.1.34", 5001);
+                serverSocket.setKeepAlive(true);
 
                 Log.d("MyLog","Server connected!");
 

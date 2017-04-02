@@ -52,7 +52,7 @@ public class NotifyPack {
             Notification notifi = new Notification.Builder(context)
                     .setContentTitle(senderName)
                     .setContentText(msg.replaceAll(senderName+":",""))
-                    .setSmallIcon(R.drawable.mail_3_small)
+                    .setSmallIcon(R.drawable.icon_mail_white)
                     .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.mail_icon_flatgreen))
                     .setAutoCancel(true)
                     .setWhen(System.currentTimeMillis())

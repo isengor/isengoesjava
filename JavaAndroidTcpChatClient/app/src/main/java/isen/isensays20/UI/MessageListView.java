@@ -49,7 +49,6 @@ public class MessageListView extends ListView implements AbsListView.OnScrollLis
     public void setArrayList(ArrayList<String> msgList){
         msgListAdapter.clear();
         msgListAdapter.addAll(msgList);
-        smoothScrollToPositionFromTop(getCount() - 1, 0);
     }
 
     public void addMsg(String msg){

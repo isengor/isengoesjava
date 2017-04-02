@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d("MyLog","Activity resumed!");
 
         activityStatus=ACTIVITY_RESUMED;
-        messageListView.setArrayList(db.getMsgHistory(5));
+        messageListView.setArrayList(db.getMsgHistory(1));
 
     }
 
@@ -149,8 +149,7 @@ public class MainActivity extends AppCompatActivity implements
     */
     @Override
     public void onFirstItemScrollUp() {
-        messageListView.setArrayList(db.getMsgHistory(messageListView.getCount()+5));
-        messageListView.smoothScrollToPosition(messageListView.getCount()-5,0);
+        messageListView.setArrayList(db.getMsgHistory(messageListView.getCount()+1));
     }
 
 }
