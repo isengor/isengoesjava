@@ -13,7 +13,7 @@ namespace TcpServer2._0
     class Program
     {
                
-        public static TcpListener server = new TcpListener(5001);
+        public static TcpListener server = new TcpListener(IPAddress.Any,5001);
         public static String data = null;
         public static List<NetworkStream> streamList = new List<NetworkStream>();
         public static MyDB myDB = new MyDB();

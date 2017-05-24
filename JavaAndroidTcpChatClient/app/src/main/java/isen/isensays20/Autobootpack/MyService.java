@@ -25,6 +25,8 @@ import isen.isensays20.MyObservable;
 public class MyService extends Service implements Observer,Handler.Callback {
 
     public static final long RECONNECTION_DELAY = 10000;
+    public static final String SERVER_IP = "192.168.1.34";
+    public static final int SERVER_PORT = 5001;
 
     private HandlerThread serverThread;
     private Socket serverSocket;
@@ -106,7 +108,7 @@ public class MyService extends Service implements Observer,Handler.Callback {
         public void run() {
 
             try {
-                serverSocket = new Socket("192.168.1.34", 5001);
+                serverSocket = new Socket(SERVER_IP, SERVER_PORT);
                 serverSocket.setKeepAlive(true);
 
                 Log.d("MyLog","Server connected!");

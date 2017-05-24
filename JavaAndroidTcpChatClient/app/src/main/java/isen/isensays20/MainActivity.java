@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d("MyLog","Activity resumed!");
 
         activityStatus=ACTIVITY_RESUMED;
-        messageListView.setArrayList(db.getMsgHistory(1));
+        messageListView.setArrayList(db.getMsgHistory(3));
 
     }
 

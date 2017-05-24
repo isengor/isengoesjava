@@ -16,3 +16,9 @@ C:\Users\Ilya\Desktop\MyProject\c#consoleTcpChatServer\TcpServer2.0\obj\Debug\Tc
 C:\Users\Ilya\Desktop\MyProject\c#consoleTcpChatServer\TcpServer2.0\bin\Debug\TcpServer2.0.exe
 C:\Users\Ilya\Desktop\MyProject\c#consoleTcpChatServer\TcpServer2.0\bin\Debug\TcpServer2.0.pdb
 C:\Users\Ilya\Desktop\MyProject\c#consoleTcpChatServer\TcpServer2.0\obj\Debug\TcpServer2.0.csprojResolveAssemblyReference.cache
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\bin\Debug\TcpServer2.0.exe.config
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\obj\Debug\TcpServer2.0.exe
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\obj\Debug\TcpServer2.0.pdb
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\bin\Debug\TcpServer2.0.exe
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\bin\Debug\TcpServer2.0.pdb
+C:\Users\Ilya\Desktop\isengoesjava\c#consoleTcpChatServer\TcpServer2.0\obj\Debug\TcpServer2.0.csprojResolveAssemblyReference.cache
